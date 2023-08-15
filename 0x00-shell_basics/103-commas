@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -pamv | sort -df | tr '\n' ',' | sed 's/\(.*\),/\1\n/'
+ls -pamv
