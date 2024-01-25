@@ -6,7 +6,7 @@
 
 count=1
 
-while [ $count -lt 10 ]
+while [ $count -lt 11 ]
 do
    if [ $count -eq 4 ]
    then
