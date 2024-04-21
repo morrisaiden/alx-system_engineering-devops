@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#connects to a server without password prompt
+
+Host 100.25.160.179
+    Hostname 100.25.160.179
+    User ubuntu
+    IdentityFile ~/.ssh/school
+    PreferredAuthentications publickey
+    PasswordAuthentication no
