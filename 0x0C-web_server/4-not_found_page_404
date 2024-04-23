@@ -17,20 +17,21 @@ new_config=\
     listen [::]:80 default_server;
 
     root /var/www/html;
-    index index.html index.htm;
+    index index.html index.htm index.nginx-index.html;
 
     server_name _;
-
-    location /redirect_me/ {
-        return 301 http://www.morrisaidenx.tech;
+    location / {
+            try_files \$uri \$uri/ =404;
     }
-
     error_page 404 /404.html;
-    location = /404.html{
-        root /etc/nginx/html;
+    location  /404.html {
         internal;
     }
-}" > /etc/nginx/sites-available/default
+    if (\$request_filename ~ redirect_me){
+    rewrite ^ https://www.youtube.com/@tpauldike permanent;
+    }
+}
+" > /etc/nginx/sites-available/default
 echo "Ceci n'est pas une page" > /etc/nginx/html/404.html
 
 nginx -t
