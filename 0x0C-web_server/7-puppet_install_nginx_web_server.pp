@@ -40,7 +40,7 @@ file { 'Nginx default config file':
         listen 80 default_server;
         listen [::]:80 default_server;
                root /var/www/html;
-        index index.html index.htm index.nginx-debian.html;
+        index index.html index.htm index.nginx-index.html;
         server_name _;
         location / {
                 try_files \$uri \$uri/ =404;
