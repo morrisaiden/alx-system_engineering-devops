@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+## Install nginx
+# Update and upgrade packages
+apt-get -y update
+apt-get -y upgrade
+
+apt-get -y install nginx
+
+# Start nginx service
+service nginx start
+
+echo "Hello World!" > /var/www/html/index.html
+
+# Update Nginx default configuration to point to custom index.html
+cat > /etc/nginx/sites-available/default <<EOL
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html;
+    index index.html index.htm;
+
+    server_name _;
+
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
+}
+EOL
+
+nginx -s reload
