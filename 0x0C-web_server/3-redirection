@@ -1,41 +1,9 @@
 #!/usr/bin/env bash
-## Install nginx
-# Update and upgrade packages
-apt-get -y update
-apt-get -y upgrade
-
-apt-get -y install nginx
-
-# Start nginx service
-service nginx start
-
-# Configure Nginx to redirect /redirect_me/
-cat > /etc/nginx/sites-available/default <<EOL
-server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-
-    root /var/www/html;
-    index index.html index.htm;
-
-    server_name _;
-
-    location /redirect_me/ {
-        return 301 http://www.morrisaidenx.tech;
-    }
-
-    location / {
-        try_files \$uri \$uri/ =404;
-    }
-}
-EOL
-
-# Move the configuration to the appropriate directory
-sudo mv /tmp/redirect_config /etc/nginx/sites-available/
-
-# Enable the new configuration
-ln -s /etc/nginx/sites-available/redirect_config /etc/nginx/sites-enabled/
-
-nginx -t
-
-nginx -s reload
+# This file Configure Nginx server so that /redirect_me is redirecting to another page
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
+echo "Hello World" | sudo tee /var/www/html/index
+sudo sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.morrisaiden.github/ permanent;'
+/etc/nginx/sites-available/default
+sudo service nginx restart
