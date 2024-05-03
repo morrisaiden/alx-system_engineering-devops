@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # a Bash script with the minimum number of commands to automate your fix a bug in a server ==> in port 80
 
-sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-sudo service nginx restart
+rm /etc/nginx/sites-enabled/default
+ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+service nginx restart
