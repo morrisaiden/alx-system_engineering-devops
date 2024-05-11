@@ -1,0 +1,19 @@
+Browser: The user initiates the process by typing a URL into the browser's address bar and pressing Enter. The browser then sends a request to the DNS resolver to translate the domain name (e.g., www.google.com) into an IP address.
+
+DNS Resolver: The DNS resolver is responsible for resolving domain names to IP addresses. It queries authoritative DNS servers to obtain the IP address associated with the requested domain name.
+
+Server IP: Once the IP address is obtained, the browser sends an HTTP request to the server's IP address on the appropriate port (usually port 80 for HTTP and port 443 for HTTPS).
+
+HTTPS/SSL: If the website uses HTTPS, the communication between the browser and the server is encrypted using SSL/TLS protocols. This encryption ensures the confidentiality and integrity of the data transmitted between the two parties.
+
+Firewall: Before reaching the server, the request may pass through a firewall, which acts as a barrier between the user's computer and the internet. The firewall monitors and controls incoming and outgoing traffic based on predefined security rules to protect the network from unauthorized access and malicious activities.
+
+Load Balancer: The request may then be directed to a load balancer, which distributes incoming traffic across multiple servers. Load balancers improve the website's reliability, scalability, and performance by evenly distributing the workload among servers and preventing any single server from becoming overwhelmed.
+
+Web Server: Upon receiving the request, the web server serves the static content of the website, such as HTML, CSS, and JavaScript files. The web server retrieves these files from the file system and sends them back to the browser over the established TCP connection.
+
+Application Server: For dynamic content, such as personalized search results or interactive features, the request may be forwarded to an application server. The application server executes the necessary code, interacts with backend services, and generates dynamic content based on the user's request.
+
+Database: If the dynamic content requires data retrieval or modification, the application server communicates with the database to fetch or store the required information. The database stores and manages structured data, such as user profiles or product catalogs, and allows efficient querying and manipulation of data.
+
+In summary, each step in the process serves a specific function in delivering the requested web content to the user's browser, ensuring efficient communication, security, and reliability throughout the journey.
