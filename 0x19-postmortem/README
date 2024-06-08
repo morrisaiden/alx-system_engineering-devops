@@ -1,0 +1,49 @@
+
+stmortem: The Great Nginx Mishap of 2024
+Issue Summary
+Duration:
+Start: 2024-06-05 14:00 UTC
+End: 2024-06-05 16:30 UTC
+Impact:
+Our beloved web application was down, leaving users with the charming 503 Service Unavailable error. Approximately 80% of our users experienced the horror. Panic ensued. Cats and dogs living together. Mass hysteria.
+Root Cause:
+A botched Nginx load balancer configuration during a routine deployment sent our traffic into the void. Yes, it was as fun as it sounds.
+Timeline
+14:00 UTC: Monitoring alert: "503 errors are spiking!" screamed our dashboard.
+14:05 UTC: On-call engineers sprang into action, caffeine-fueled and ready.
+14:10 UTC: "It must be the database!" someone shouted. (Spoiler: It wasn’t.)
+14:20 UTC: Database team gave a thumbs-up. The database was fine.
+14:30 UTC: Misleading path: "Maybe it’s the application servers?" Nope, all good.
+15:00 UTC: DevOps team entered the fray. "It’s gotta be Nginx," they deduced.
+15:15 UTC: Nginx configuration rollback initiated. Fingers crossed.
+15:30 UTC: Still broken. Cue the sad trombone.
+16:00 UTC: Eureka! A missing environment variable (UPSTREAM_SERVER) found.
+16:15 UTC: Fixed the config. Re-deployed. Held our breath.
+16:30 UTC: Success! Services restored. Time for a celebratory coffee.
+Root Cause and Resolution
+Root Cause:
+During our routine deployment at 13:50 UTC, a gremlin slipped into our Nginx configuration. It missed an essential environment variable (UPSTREAM_SERVER). Instead of routing traffic like a good little load balancer, Nginx threw up its virtual hands and gave everyone 503 errors.
+Resolution:
+We heroically:
+Rolled back the Nginx config (which helped but didn’t solve everything).
+Spotted the missing UPSTREAM_SERVER variable.
+Updated the config, deployed the fix, and basked in the glory of restored service.
+Corrective and Preventative Measures
+Improvements:
+More stringent validation for configuration files pre-deployment to catch any missing variables.
+Enhanced monitoring to scream at us even louder if Nginx goes rogue again.
+Tasks:
+Patch Nginx Configuration:
+Update deployment scripts to include validation steps for all required environment variables.
+Enhance Monitoring:
+Implement new monitoring checks for Nginx configuration integrity.
+Add alerts for unusual traffic patterns or error spikes indicating potential routing issues.
+Review and Document Deployment Procedures:
+Review current deployment procedures and document detailed steps to ensure critical configurations are not overlooked.
+Training and Awareness:
+Conduct a training session for the DevOps and engineering teams on the importance of configuration validation and monitoring.
+Post-Deployment Verification:
+Establish a post-deployment verification process to confirm successful deployment and proper functioning of all components immediately after any updates.
+And that, dear readers, is how we survived the Great Nginx Mishap of 2024. Remember, always double-check your configs, keep your monitoring sharp, and never underestimate the power of a missing environment variable!
+
+
