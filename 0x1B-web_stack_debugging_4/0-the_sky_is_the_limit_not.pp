@@ -1,11 +1,11 @@
-reducing the number of failed requests on nginx
+# Reducing the no of failed requests
 
 exec { 'fix--for-nginx':
-  command => 'sed -i "s/15/4096/" /etc/default/nginx',
+  command => 'sed -i "s/15/65535/" /etc/default/nginx',
   path    => '/usr/local/bin/:/bin'
 }
 
-#restarting Nginx
+#restart Nginx
 
 exec { 'nginx-restart':
   command => 'nginx restart',
