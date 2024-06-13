@@ -1,7 +1,7 @@
 reducing the number of failed requests on nginx
 
 exec { 'fix--for-nginx':
-  command => 'sed -i "s/15/65535/" /etc/default/nginx',
+  command => 'sed -i "s/15/4000/" /etc/default/nginx',
   path    => '/usr/local/bin/:/bin'
 }
 
